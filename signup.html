@@ -20,8 +20,24 @@
         </nav>
         <!-- MAIN CONTENT -->
         <main>
-            <h1>Easy Meals</h1>
-            <button type="button" href="recipes.html">Find Recipes</button>
+            <div class="container">
+                <h1 class="title">Sign Up</h1>
+                <input class="signup-input" type="text" id="Enter email" name="email" placeholder="Enter email">
+                <input class="signup-input" type="text" id="Enter password" name="password" placeholder="Enter password">
+                <input class="signup-input" type="text" id="Confirm password" name="confirmPassword" placeholder="Confirm password">
+                <form class="diet-restrictions-dropdown" action="page.php" method="get">
+                    <select id="drop" name="dropdown">
+                        <option value="DefaultOption" selected>Choose diet</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Vegan">Vegan</option>
+                        <option value="Keto">Keto</option>
+                        <option value="Halal">Halal</option>
+                    </select>
+                    <input id="select-diet" type="submit" value="Submit">
+                </form>
+                <!--<button id="signup-createaccount-button"><a href="recipes.html">Create Account</a></button>-->
+                <input id="signup-button" type = "button" onclick = "storeCookies()" value = "Create Account">  
+            </div>
         </main>
     </body>
 </html>

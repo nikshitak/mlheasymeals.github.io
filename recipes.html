@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Easy Meals</title>
         <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <script src="/javascript/script.js" charset="UTF-8"></script>
+        <script src="https://code.jquery.com/jquery-3.6.1.slim.js" integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
     </head>
     
     <body>
@@ -21,19 +23,92 @@
         <!-- MAIN CONTENT -->
         <main>
             <h1>Search Meals:</h1>
-            <h2>Add Ingredient:</h2>
-            <div class="recipies-select">
-                <div class="dropdown">
-                </div>
-            </div>
             <h2>My Ingredients:</h2>
             <div class="my-ingredients">
                 <div class="ingredient">
                     <span class="ingredient-name">Ostrich</span>
-                    <span class="ingredient-close">X</span>
+                    <div class="ingredient-close">
+                        <hr>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <h2>Add Ingredient:</h2>
+            <div class="add-ingredient">
+                <h1>Search</h1>
+                <div class="add-ingredient-search">
+                    <input type="text"></input>
+                    <div class="add-ingredient-button"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <div class="add-ingredient-clear"><span>Clear</span></div>
+                </div>
+                <h1>Filters</h1>
+                <div class="add-ingredient-filters">
+                    <div class="filter on" onclick=toggleFilter(this)>
+                        <span>Fruits</span>
+                        <div class="filter-toggle">
+                            <hr>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="filter on" onclick=toggleFilter(this)>
+                        <span>Vegetables</span>
+                        <div class="filter-toggle">
+                            <hr>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="filter on" onclick=toggleFilter(this)>
+                        <span>Meats</span>
+                        <div class="filter-toggle">
+                            <hr>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="filter on" onclick=toggleFilter(this)>
+                        <span>Dairy</span>
+                        <div class="filter-toggle">
+                            <hr>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <h1>Ingredients</h1>
+                <script type="text/javascript">
+                    ingredients = ["Avocado", "Banana", "Orange", "Chicken", "Eggplant"];
+                    fruits = ["Avocado", "Banana", "Orange"];
+                    meats
+                </script>
+                <div class="ingredient-list">
+                    <div class="ingredient-bubble">
+                        <span>Ostrich</span>
+                    </div>
+                    <div class="ingredient-bubble">
+                        <span>Bannnana</span>
+                    </div>
+                    <div class="ingredient-bubble">
+                        <span>Orang</span>
+                    </div>
+                    <div class="ingredient-bubble">
+                        <span>Turnip</span>
+                    </div>
+                    <div class="ingredient-bubble">
+                        <span>Avaocaodo</span>
+                    </div>
                 </div>
             </div>
             <button type="button" href="recipes.html">Find Recipes</button>
         </main>
+        <script type="text/javascript">
+            function toggleFilter(e) {
+                if ($(e).hasClass("on")) {
+                    $(e).removeClass("on");
+                    $(e).addClass("off");
+                }
+                else {
+                    $(e).removeClass("off");
+                    $(e).addClass("on");
+                }
+            }
+        </script>
     </body>
 </html>
