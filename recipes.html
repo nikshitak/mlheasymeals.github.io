@@ -35,7 +35,7 @@
                     <div class="add-ingredient-button"><i class="fa-solid fa-magnifying-glass"></i></div>
                     <div class="add-ingredient-clear"><span>Clear</span></div>
                 </div>
-                <h1>Filters</h1>
+                <h1>Filters (Select an option to remove all types of that food)</h1>
                 <div class="add-ingredient-filters">
                     <div class="filter on" onclick=toggleFilter(this)>
                         <span>Fruits</span>
@@ -65,6 +65,13 @@
                             <hr>
                         </div>
                     </div>
+                    <div class="filter on" onclick=toggleFilter(this)>
+                        <span>Grains</span>
+                        <div class="filter-toggle">
+                            <hr>
+                            <hr>
+                        </div>
+                    </div>
                 </div>
                 <h1>Ingredients</h1>
                 <div class="ingredient-list"></div>
@@ -86,23 +93,65 @@
                 "Asparagus",
                 "Eggplant",
                 "Chicken",
-                "Milk"
+                "Milk",
+                "Tomato",
+                "Onions",
+                "Cilantro",
+                "Lettuce",
+                "Apple",
+                "Grapes",
+                "Strawberry",
+                "Cream Cheese",
+                "Salted Butter",
+                "Unsalted Butter",
+                "Salmon",
+                "Flour",
+                "Sugar",
+                "Whole Wheat Bread",
+                "White Bread", 
+                "Quinoa",
+                "Greek Yogurt",
+                "Lemon",
             ];
             FRUITS = [
                 "Avocado",
                 "Banana",
-                "Orange"
+                "Orange",
+                "Apple",
+                "Grapes",
+                "Strawberry"
             ];
             VEGETABLES = [
                 "Asparagus",
-                "Eggplant"
+                "Eggplant",
+                "Onions",
+                "Tomato",
+                "Cilantro",
+                "Lettuce",
+                "Lemon",
+
             ];
             MEATS = [
-                "Chicken"
+                "Chicken",
+                "Salmon",
             ];
             DAIRY = [
-                "Milk"
+                "Milk",
+                "Cream Cheese",
+                "Salted Butter",
+                "Unsalted Butter", 
+                "Greek Yogurt",
+
+                
             ];
+            GRAIN = [
+                "Flour",
+                "Sugar",
+                "Whole Wheat Bread",
+                "White Bread", 
+                "Quinoa"
+            ];
+            
 
             RECIPIES = [
                 // First item is recipe, 2nd item is an array of ingredients
@@ -140,8 +189,6 @@
                 else {
                     my_ingredients = cookies[cookies.indexOf("my_ingredients") + 1];
                     my_ingredients = my_ingredients.split(",");
-                    console.log("HI");
-                    console.log(my_ingredients);
                     while (my_ingredients[0] == '') {
                         my_ingredients.splice(0, 1)
                     }
@@ -175,8 +222,8 @@
                 });
             }
 
-            loadIngredients();
             loadMyIngredients();
+            loadIngredients();
 
             // Toggle filter
             function toggleFilter(e) {
@@ -193,6 +240,9 @@
                 }
                 else if (filter == "Dairy") {
                     filter_array = DAIRY;
+                }
+                else if (filter == "Grains") {
+                    filter_array = GRAIN;
                 }
                 // Add a filter (remove options)
                 if ($(e).hasClass("on")) {
