@@ -75,31 +75,71 @@
                 <h1>Ingredients</h1>
                 <div class="ingredient-list"></div>
             </div>
-            <button type="button" href="recipes.html">Find Recipes</button>
+            <button id="get-recipes-button" type="button" href="#">Find Recipes</button>
         </main>
         <!-- filter stuff -->
         <script type="text/javascript">
             // Load my ingredients
 
             // Constant arrays
-            INGREDIENTS = ["Avocado", "Banana", "Orange", "Chicken", "Eggplant"];
+            INGREDIENTS = ["Avocado", "Banana", "Orange", "Asparagus", "Eggplant", "Chicken",];
             FRUITS = ["Avocado", "Banana", "Orange"];
             VEGETABLES = ["Asparagus", "Eggplant"];
             MEATS = ["Chicken"];
-            DAIRY = [];
+            DAIRY = ["Milk"];
 
             // Working array of ingredients
             ingredients = [];
-            INGREDIENTS.forEach(function(e){ ingredients.push(e); });
+            INGREDIENTS.forEach(function(e){
+                ingredients.push(e);
+            });
+
+            function loadMyIngredients() {
+                $(".my-ingredients").empty();
+                cookies = document.cookie;
+                cookies = cookies.split("=");
+                my_ingredients = "";
+                if (cookies.indexOf("my_ingredients") == -1) {
+                    my_ingredients = [];
+                }
+                else {
+                    my_ingredients = cookies[cookies.indexOf("my_ingredients") + 1];
+                    my_ingredients = my_ingredients.split(",");
+                    console.log("HI");
+                    console.log(my_ingredients);
+                    while (my_ingredients[0] == '') {
+                        my_ingredients.splice(0, 1)
+                    }
+                }
+
+                console.log(my_ingredients);
+                my_ingredients.forEach(function(e){
+                    $(".my-ingredients").append("<div class='ingredient'><span class='ingredient-name'>" + e + "</span><div class='ingredient-close' onclick=removeIngredient(this)><hr><hr></div></div>");
+                });
+            }
 
             function loadIngredients() {
                 $(".ingredient-list").empty();
                 ingredients.forEach(function(e) {
-                    $(".ingredient-list").append("<div class='ingredient-bubble' onclick=addIngredient(this)><span>" + e + "</span></div>");
+                    cookies = document.cookie;
+                    cookies = cookies.split("=");
+                    my_ingredients = "";
+                    if (cookies.indexOf("my_ingredients") == -1) {
+                        my_ingredients = [];
+                    }
+                    else {
+                        my_ingredients = cookies[cookies.indexOf("my_ingredients") + 1];
+                        my_ingredients = my_ingredients.split(",");
+                    }
+
+                    if (my_ingredients.indexOf(e) == -1) {
+                        $(".ingredient-list").append("<div class='ingredient-bubble' onclick=addIngredient(this)><span>" + e + "</span></div>");
+                    }
                 });   
             }
 
             loadIngredients();
+            loadMyIngredients();
 
             // Toggle filter
             function toggleFilter(e) {
@@ -142,7 +182,22 @@
                         index = ingredients.indexOf(e);
                         // If the item isn't in the array, add it
                         if (ingredients.indexOf(e) == -1) {
-                            ingredients.push(e);
+                            // Also check if not in the cookies
+                            cookies = document.cookie;
+                            cookies = cookies.split("=");
+                            my_ingredients = "";
+                            if (cookies.indexOf("my_ingredients") == -1) {
+                                my_ingredients = [];
+                            }
+                            else {
+                                my_ingredients = cookies[cookies.indexOf("my_ingredients") + 1];
+                                my_ingredients = my_ingredients.split(",");
+                            }
+
+                            // Add the element only if it's not in my_ingredients
+                            if (my_ingredients.indexOf(e) == -1) {
+                                ingredients.push(e);
+                            }
                         }
                     });
 
@@ -166,6 +221,20 @@
                 document.cookie = "my_ingredients=" + my_ingredients;
                 ingredients.splice(ingredients.indexOf(ingredient), 1);
                 loadIngredients();
+                loadMyIngredients();
+            }
+
+            function removeIngredient(e) {
+                ingredient = $(e).parent().children()[0].innerHTML;
+                cookies = document.cookie;
+                cookies = cookies.split("=");
+                my_ingredients = cookies[cookies.indexOf("my_ingredients") + 1];
+                my_ingredients = my_ingredients.split(",");
+                my_ingredients.splice(my_ingredients.indexOf(ingredient), 1);
+                document.cookie = "my_ingredients=" + my_ingredients;
+                ingredients.push(ingredient);
+                loadIngredients();
+                loadMyIngredients();
             }
         </script>
     </body>
