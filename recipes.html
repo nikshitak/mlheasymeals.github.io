@@ -73,36 +73,57 @@
                     </div>
                 </div>
                 <h1>Ingredients</h1>
-                <script type="text/javascript">
-                    ingredients = ["Avocado", "Banana", "Orange", "Chicken", "Eggplant"];
-                    fruits = ["Avocado", "Banana", "Orange"];
-                    meats
-                </script>
-                <div class="ingredient-list">
-                    <div class="ingredient-bubble">
-                        <span>Ostrich</span>
-                    </div>
-                    <div class="ingredient-bubble">
-                        <span>Bannnana</span>
-                    </div>
-                    <div class="ingredient-bubble">
-                        <span>Orang</span>
-                    </div>
-                    <div class="ingredient-bubble">
-                        <span>Turnip</span>
-                    </div>
-                    <div class="ingredient-bubble">
-                        <span>Avaocaodo</span>
-                    </div>
-                </div>
+                <div class="ingredient-list"></div>
             </div>
             <button type="button" href="recipes.html">Find Recipes</button>
         </main>
+        <!-- filter stuff -->
         <script type="text/javascript">
+            // Constant arrays
+            INGREDIENTS = ["Avocado", "Banana", "Orange", "Chicken", "Eggplant"];
+            FRUITS = ["Avocado", "Banana", "Orange"];
+            VEGETABLES = ["Asparagus"];
+            MEATS = ["Chicken"];
+            DAIRY = [];
+
+            // Working array of ingredients
+            ingredients = [];
+            INGREDIENTS.forEach(function(e){ ingredients.push(e); });
+
+            function loadIngredients() {
+                $(".ingredients-list").innerHTML = "";
+                ingredients.forEach(function(e) {
+                    $(".ingredient-list").append("<div class='ingredient-bubble'><span>" + e + "</span></div>");
+                });   
+            }
+
+            loadIngredients();
+
+            // Toggle filter
             function toggleFilter(e) {
+                filter = $(e).children()[0].innerHTML;
+                filter_array = [];
+                if (filter == "Fruits") {
+                    filter_array = FRUITS;
+                }
+                else if (filter == "Vegetables") {
+                    filter_array = VEGETABLES;
+                }
+                else if (filter == "Meats") {
+                    filter_array = MEATS;
+                }
+                else if (filter == "Dairy") {
+                    filter_array = DAIRY;
+                }
                 if ($(e).hasClass("on")) {
                     $(e).removeClass("on");
                     $(e).addClass("off");
+                    filter_array.forEach(function(e){
+                        index = ingredients.indexOf()
+                        if (ingredients.indexOf(e) != -1) {
+
+                        }
+                    });
                 }
                 else {
                     $(e).removeClass("off");
