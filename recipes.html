@@ -35,7 +35,7 @@
                     <div class="add-ingredient-button"><i class="fa-solid fa-magnifying-glass"></i></div>
                     <div class="add-ingredient-clear"><span>Clear</span></div>
                 </div>
-                <h1>Filters (Select an option to remove all types of that food)</h1>
+                <h1>Filters</h1>
                 <div class="add-ingredient-filters">
                     <div class="filter on" onclick=toggleFilter(this)>
                         <span>Fruits</span>
@@ -320,8 +320,8 @@
                 my_ingredients.splice(my_ingredients.indexOf(ingredient), 1);
                 document.cookie = "my_ingredients=" + my_ingredients;
                 ingredients.push(ingredient);
-                loadIngredients();
                 loadMyIngredients();
+                loadIngredients();
             }
         </script>
     </body>

@@ -373,25 +373,23 @@ a:visited {
     margin: 0;
     position: absolute;
     transition: 0.3s;
+    top: 8px;
 }
 
 .filter.on .filter-toggle hr:first-child {
-    top: 8px;
-}
-
-.filter.on .filter-toggle hr:last-child {
-    top: 8px;
-    transform: rotate(90deg);
-}
-
-.filter.off .filter-toggle hr:first-child {
-    top: 8px;
     transform: rotate(45deg);
 }
 
-.filter.off .filter-toggle hr:last-child {
-    top: 8px;
+.filter.on .filter-toggle hr:last-child {
     transform: rotate(-45deg);
+}
+
+.filter.off .filter-toggle hr:first-child {
+
+}
+
+.filter.off .filter-toggle hr:last-child {
+    transform: rotate(90deg);
 }
 
 .ingredient-list {
