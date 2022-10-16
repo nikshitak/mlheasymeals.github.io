@@ -79,10 +79,12 @@
         </main>
         <!-- filter stuff -->
         <script type="text/javascript">
+            // Load my ingredients
+
             // Constant arrays
             INGREDIENTS = ["Avocado", "Banana", "Orange", "Chicken", "Eggplant"];
             FRUITS = ["Avocado", "Banana", "Orange"];
-            VEGETABLES = ["Asparagus"];
+            VEGETABLES = ["Asparagus", "Eggplant"];
             MEATS = ["Chicken"];
             DAIRY = [];
 
@@ -91,9 +93,9 @@
             INGREDIENTS.forEach(function(e){ ingredients.push(e); });
 
             function loadIngredients() {
-                $(".ingredients-list").innerHTML = "";
+                $(".ingredient-list").empty();
                 ingredients.forEach(function(e) {
-                    $(".ingredient-list").append("<div class='ingredient-bubble'><span>" + e + "</span></div>");
+                    $(".ingredient-list").append("<div class='ingredient-bubble' onclick=addIngredient(this)><span>" + e + "</span></div>");
                 });   
             }
 
@@ -115,20 +117,55 @@
                 else if (filter == "Dairy") {
                     filter_array = DAIRY;
                 }
+                // Add a filter (remove options)
                 if ($(e).hasClass("on")) {
                     $(e).removeClass("on");
                     $(e).addClass("off");
                     filter_array.forEach(function(e){
-                        index = ingredients.indexOf()
+                        console.log(e);
+                        index = ingredients.indexOf(e);
+                        console.log(index);
+                        // If the item is in the array, remove it
                         if (ingredients.indexOf(e) != -1) {
-
+                            ingredients.splice(index, 1);
                         }
                     });
+
+                    console.log(ingredients);
+                    loadIngredients();
                 }
+                // Remove a filter (adds options)
                 else {
                     $(e).removeClass("off");
                     $(e).addClass("on");
+                    filter_array.forEach(function(e){
+                        index = ingredients.indexOf(e);
+                        // If the item isn't in the array, add it
+                        if (ingredients.indexOf(e) == -1) {
+                            ingredients.push(e);
+                        }
+                    });
+
+                    loadIngredients();
                 }
+            }
+
+            function addIngredient(e) {
+                ingredient = $(e).children()[0].innerHTML;
+                cookies = document.cookie;
+                cookies = cookies.split("=");
+                my_ingredients = "";
+                if (cookies.indexOf("my_ingredients") == -1) {
+                    my_ingredients = [];
+                }
+                else {
+                    my_ingredients = cookies[cookies.indexOf("my_ingredients") + 1];
+                    my_ingredients = my_ingredients.split(",");
+                }
+                my_ingredients.push(ingredient);
+                document.cookie = "my_ingredients=" + my_ingredients;
+                ingredients.splice(ingredients.indexOf(ingredient), 1);
+                loadIngredients();
             }
         </script>
     </body>
