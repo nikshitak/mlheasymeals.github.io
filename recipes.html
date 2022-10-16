@@ -22,18 +22,12 @@
         </nav>
         <!-- MAIN CONTENT -->
         <main>
-            <h1>Search Meals:</h1>
-            <h2>My Ingredients:</h2>
+            <h1>Search Meals</h1>
+            <p>Choose what ingredients you have available and we'll give you some recipes you can make</p>
+            <h2>My Ingredients</h2>
             <div class="my-ingredients">
-                <div class="ingredient">
-                    <span class="ingredient-name">Ostrich</span>
-                    <div class="ingredient-close">
-                        <hr>
-                        <hr>
-                    </div>
-                </div>
             </div>
-            <h2>Add Ingredient:</h2>
+            <h2>Add Ingredient</h2>
             <div class="add-ingredient">
                 <h1>Search</h1>
                 <div class="add-ingredient-search">
@@ -75,24 +69,44 @@
                 <h1>Ingredients</h1>
                 <div class="ingredient-list"></div>
             </div>
-            <button id="get-recipes-button" type="button" href="#">Find Recipes</button>
+            <!--<button id="get-recipes-button" type="button" href="#">Find Recipes</button>-->
+            <h1>Recipies</h1>
+            <div class="recipies">
+            </div>
         </main>
         <!-- filter stuff -->
         <script type="text/javascript">
             // Load my ingredients
 
             // Constant arrays
-            INGREDIENTS = ["Avocado", "Banana", "Orange", "Asparagus", "Eggplant", "Chicken",];
+            INGREDIENTS = ["Avocado", "Banana", "Orange", "Asparagus", "Eggplant", "Chicken", "Milk"];
             FRUITS = ["Avocado", "Banana", "Orange"];
             VEGETABLES = ["Asparagus", "Eggplant"];
             MEATS = ["Chicken"];
             DAIRY = ["Milk"];
+
+            RECIPIES = [
+                ["Chocolate Milk", ["Milk", "Chocolate"]],
+                ["Guacamole", ["Avocado"]]
+            ];
 
             // Working array of ingredients
             ingredients = [];
             INGREDIENTS.forEach(function(e){
                 ingredients.push(e);
             });
+
+            function loadRecipies(my_ingredients) {
+                $(".recipies").empty();
+                RECIPIES.forEach(function(e){
+                    for (var i = 0; i < e[1].length; ++i) {
+                        if (my_ingredients.indexOf(e[1][i]) != -1) {
+                            $(".recipies").append("<div class='recipie'><span>" + e[0] + "</span></div>");;
+                            break;
+                        }
+                    }
+                });
+            }
 
             function loadMyIngredients() {
                 $(".my-ingredients").empty();
@@ -116,6 +130,8 @@
                 my_ingredients.forEach(function(e){
                     $(".my-ingredients").append("<div class='ingredient'><span class='ingredient-name'>" + e + "</span><div class='ingredient-close' onclick=removeIngredient(this)><hr><hr></div></div>");
                 });
+
+                loadRecipies(my_ingredients);
             }
 
             function loadIngredients() {
@@ -135,7 +151,7 @@
                     if (my_ingredients.indexOf(e) == -1) {
                         $(".ingredient-list").append("<div class='ingredient-bubble' onclick=addIngredient(this)><span>" + e + "</span></div>");
                     }
-                });   
+                });
             }
 
             loadIngredients();

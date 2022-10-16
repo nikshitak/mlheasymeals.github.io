@@ -411,6 +411,30 @@ a:visited {
     box-shadow: 0 3px 9px rgba(0, 0, 0, 0.25);
 }
 
+.recipies {
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    margin-top: 16px;
+    padding: 16px;
+    display: flex;
+}
+
+.recipie {
+    padding: 8px 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    color: #fff;
+    background-color: #F7B267;
+    transition: 0.3s;
+}
+
+.recipie:hover {
+    background-color: #f4845f;
+}
+
 /* SIGN UP PAGE */
 
 .title {
@@ -536,6 +560,11 @@ a:visited {
 
 .question {
     font-weight: bold;
+    font-size: 20px;
+}
+
+.answer {
+    font-size: 18px;
 }
 
 dd {

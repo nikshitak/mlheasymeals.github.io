@@ -1,8 +1,0 @@
-<nav>
-  <ul>
-    <li><a href="/">HOME</a></li>
-    <li><a href="/recipies">FIND RECIPIES</a></li>
-    <li><a href="#">FAQ</a></li>
-    <li><a href="/login">LOGIN</a></li>
-  </ul>
-</nav>
